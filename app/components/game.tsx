@@ -5,19 +5,11 @@ import { Game as GameProps } from '../types';
 export default function Game({ team1Name, team2Name, team1Players, team2Players, refs, sets, court, time, format }: GameProps) {
     // Filter out sets that are not yet played
     // sets = sets.filter(({ team1Score, team2Score }) => team1Score !== 0 || team2Score !== 0);
-
-    if (format.includes("break")) {
-        return (
-            <div>
-                Break
-            </div>
-        )
-    }
-
     return (
         <div className={styles.game}>
             <div className={styles.gameHeader}>
                 <span>Court {court}</span>
+                <span>{format}</span>
                 <span>{time?.toLowerCase()}</span>
             </div>
 
@@ -48,9 +40,11 @@ export default function Game({ team1Name, team2Name, team1Players, team2Players,
 
             ))}
 
-            <div className={styles.refs}>
-                <span>Refs: {refs.join(', ')}</span>
-            </div>
+            { refs && refs.length > 0 &&
+                <div className={styles.refs}>
+                    <span>Refs: {refs.join(', ')}</span>
+                </div>
+            }   
         </div>
     );
 }

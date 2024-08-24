@@ -10,7 +10,6 @@ export default function GameListLoading({count = 8}: GameListLoadingProps) {
             variant="rounded" 
             width="100%" height={140}  
             sx={{ 
-                bgcolor: '#1e1e1e;',
                 borderRadius: "10px",
             }}
         />
