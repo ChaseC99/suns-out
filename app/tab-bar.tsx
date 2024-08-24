@@ -33,7 +33,7 @@ export default function TabBar() {
                     icon={<InfoOutlinedIcon />}
                 />
                 <BottomNavigationAction
-                    label="Volleybrawl"
+                    label="Schedule"
                     value="/"
                     icon={<SportsVolleyballIcon />}
                 />
