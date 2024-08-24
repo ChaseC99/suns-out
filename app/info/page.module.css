@@ -3,15 +3,16 @@
     flex-direction: column;
     gap: 25px;
     padding: 10px;
-    color: white;
+    color: black;
 }
 
 .header {
     display: flex;
+    text-align: center;
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    color: white;    
+    color: black;    
 }
 
 .header h1 {
@@ -45,12 +46,12 @@
     justify-content: space-evenly;
     align-items: center;
     border-radius: 8px;
-    border: 1px solid white;
+    border: 1px solid #8d6f5a;
     padding: 10px;
 }
 
 .whatToBringContainer {
-    border: 1px solid white;
+    border: 1px solid #8d6f5a;
     padding: 10px;
     border-radius: 8px;
 }

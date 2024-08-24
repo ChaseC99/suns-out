@@ -4,8 +4,8 @@
     width: 100%;    
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    background-color: #1e1e1e;
-    border: 2px solid #444;
+    background-color: #dfdcc9;
+    border: 2px solid #8d6f5a;
     border-radius: 10px;
 }
 
@@ -15,7 +15,15 @@
     align-items: center;
     padding: 10px;
     font-weight: bold;
-    color: gray;
+    color: #444;
+}
+
+.teamNames {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 10px;
+    width: 100%;
 }
 
 .playersContainer {
@@ -43,7 +51,7 @@
 
 .refs {
     text-align: center;
-    color: gray;
+    color: #444;
     width: 100%;
     padding: 10px;
 }

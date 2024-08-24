@@ -23,7 +23,7 @@ export default function Schedule({ games, lastUpdated, loading }: ScheduleProps)
             <GamesList games={games} />
             {
                 lastUpdated && (
-                    <div style={{ color: "lightgray", textAlign: "center", marginTop: 24 }}>
+                    <div style={{ color: "#444", textAlign: "center", marginTop: 24 }}>
                         Last updated: {lastUpdated}
                     </div>
                 )

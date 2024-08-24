@@ -20,7 +20,7 @@ export default function PlayerPicker({ value, onChange }: PlayerPickerProps) {
                     <InputLabel
                         shrink={false}
                         sx={{
-                            color: "white",
+                            color: "#8d6f5a",
                         }}>
                         Pick a player
                     </InputLabel>
@@ -31,18 +31,18 @@ export default function PlayerPicker({ value, onChange }: PlayerPickerProps) {
                 value={value}
                 fullWidth
                 sx={{
-                    color: "white",
+                    color: "black",
                     '.MuiOutlinedInput-notchedOutline': {
-                        borderColor: 'rgba(228, 219, 233, 0.25)',
+                        borderColor: '#8d6f5a',
                     },
                     '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                        borderColor: 'rgba(228, 219, 233, 0.25)',
+                        borderColor: '#8d6f5a',
                     },
                     '&:hover .MuiOutlinedInput-notchedOutline': {
-                        borderColor: 'rgba(228, 219, 233, 0.25)',
+                        borderColor: '#8d6f5a',
                     },
                     '.MuiSvgIcon-root ': {
-                        fill: "white !important",
+                        fill: "#8d6f5a !important",
                     }
                 }}
             >
