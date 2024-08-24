@@ -4,14 +4,17 @@ type GameSet = {
 };
 
 export type Game = {
+    id: number;
     team1Name: string;
     team2Name: string;
     team1Players: string[];
     team2Players: string[];
     sets: GameSet[];
     court: number;
-    time?: string;
-    refs: [string, string];
+    format: string;
+    time: string;
+    notes: string;
+    refs: string[];
 };
 
 export type TeamScore = {

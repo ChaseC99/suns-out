@@ -2,15 +2,28 @@ import React from 'react';
 import styles from './game.module.css';
 import { Game as GameProps } from '../types';
 
-export default function Game({ team1Players, team2Players, refs, sets, court, time }: GameProps) {
+export default function Game({ team1Name, team2Name, team1Players, team2Players, refs, sets, court, time, format }: GameProps) {
     // Filter out sets that are not yet played
-    sets = sets.filter(({ team1Score, team2Score }) => team1Score !== 0 || team2Score !== 0);
+    // sets = sets.filter(({ team1Score, team2Score }) => team1Score !== 0 || team2Score !== 0);
+
+    if (format.includes("break")) {
+        return (
+            <div>
+                Break
+            </div>
+        )
+    }
 
     return (
         <div className={styles.game}>
             <div className={styles.gameHeader}>
                 <span>Court {court}</span>
                 <span>{time?.toLowerCase()}</span>
+            </div>
+
+            <div className={styles.teamNames}>
+                <span>{team1Name}</span>
+                <span>{team2Name}</span>
             </div>
 
             <div className={styles.playersContainer}>
