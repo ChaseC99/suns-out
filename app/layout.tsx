@@ -6,12 +6,15 @@ import TabBar from "./tab-bar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Volleybrawl",
+  title: "Sun's Out Balls Out",
   description: "Let's ball",
+  manifest: "/manifest.json",
+  icons: "/logo.png",
   appleWebApp: {
     capable: true,
-    statusBarStyle: "black-translucent"
-  }
+    statusBarStyle: "black-translucent",
+    startupImage: "apple-icon.png",
+  },
 };
 
 export const viewport: Viewport = {

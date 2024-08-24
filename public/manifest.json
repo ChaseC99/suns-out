@@ -1,0 +1,10 @@
+{
+    "name": "Sun's Out Balls Out",
+    "short_name": "Sun's Out",
+    "display": "standalone",
+    "background_color": "#dfdcc9",
+    "theme_color": "#dfdcc9",
+    "start_url": "/",
+    "scope": "/",
+    "splash_pages": null
+}
