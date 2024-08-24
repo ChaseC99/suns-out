@@ -18,7 +18,7 @@ async function loadTSVData(url: string, ignoreHeader: boolean = true) {
     // Use fetch to get the CSV data
     const results = await fetch(url);
     const csvData = await results.text();
-    
+
     // Get the rows from the CSV data
     const rows = csvData.split('\n');
 
@@ -31,7 +31,7 @@ async function loadTSVData(url: string, ignoreHeader: boolean = true) {
         rows.shift();
     }
 
-    return {rows, lastUpdated};
+    return { rows, lastUpdated };
 }
 
 function getSetScore(score: string): number {
@@ -39,45 +39,41 @@ function getSetScore(score: string): number {
 }
 
 function mapGamesTSVToGames(csvData: string[]): Game[] {
-    // Each 2 rows represent a game
-    // The CSV data is formatted as follows:
-    //  time, court, team name, player1, player2, player3, player4, set1 score, set2 score
-    // 
-    // Example:
-    //  10:15,1,Digma Balls,Erik,Constance,Cole,Alex S,13,17
-    //  10:15,,Calm Yo Tips,Hoang,Kristi,Chase,Colina,21,21
-
     const games: { [id: number]: Game } = {};
     for (let i = 0; i < csvData.length; i += 1) {
-        const [id, round, time, court, format, notes, t1_name, t1_players, t1_score, t2_name, t2_players, t2_score, referees] = csvData[i].split('\t');
-        
-        const gameId = parseInt(id);
-        const courtNumber = parseInt(court);
-        const team1Players = t1_players.split(",");
-        const team2Players = t2_players.split(",")
-        const refs = referees.split(",").filter((ref: string) => ref.trim() !== "");
-        
-        const gameSet = {
-            team1Score: parseInt(t1_score),
-            team2Score: parseInt(t2_score),
-        };
+        try {
+            const [id, round, time, court, format, notes, t1_name, t1_players, t1_score, t2_name, t2_players, t2_score, referees] = csvData[i].split('\t');
 
-        if (!games[gameId]) {
-            games[gameId] = {
-                id: gameId,
-                team1Name: t1_name,
-                team2Name: t2_name,
-                team1Players,
-                team2Players,
-                sets: [gameSet],
-                court: courtNumber,
-                format,
-                time,
-                notes,
-                refs,
+            const gameId = parseInt(id);
+            const courtNumber = parseInt(court);
+            const team1Players = t1_players.split(",");
+            const team2Players = t2_players.split(",")
+            const refs = referees.split(",").filter((ref: string) => ref.trim() !== "");
+
+            const gameSet = {
+                team1Score: getSetScore(t1_score),
+                team2Score: getSetScore(t2_score),
             };
-        } else {
-            games[gameId].sets.push(gameSet);
+
+            if (!games[gameId]) {
+                games[gameId] = {
+                    id: gameId,
+                    team1Name: t1_name,
+                    team2Name: t2_name,
+                    team1Players,
+                    team2Players,
+                    sets: [gameSet],
+                    court: courtNumber,
+                    format,
+                    time,
+                    notes,
+                    refs,
+                };
+            } else {
+                games[gameId].sets.push(gameSet);
+            }
+        } catch (e) {
+            console.error("Error parsing game data", e);
         }
     }
 
@@ -85,17 +81,17 @@ function mapGamesTSVToGames(csvData: string[]): Game[] {
 }
 
 export async function getGames() {
-    const {rows: csvData, lastUpdated} = await loadTSVData(GAMES_CSV_URL);
-    return {games: mapGamesTSVToGames(csvData), lastUpdated};
+    const { rows: csvData, lastUpdated } = await loadTSVData(GAMES_CSV_URL);
+    return { games: mapGamesTSVToGames(csvData), lastUpdated };
 }
 
 export async function getGamesFor(player: string) {
-    const {rows: csvData, lastUpdated} = await loadTSVData(GAMES_CSV_URL);
+    const { rows: csvData, lastUpdated } = await loadTSVData(GAMES_CSV_URL);
     const games = mapGamesTSVToGames(csvData).filter(game => game.team1Players.includes(player) || game.team2Players.includes(player) || game.refs.includes(player));
-    return {games, lastUpdated};
+    return { games, lastUpdated };
 }
 
-export function getTeamWins(games: Game[]): TeamWins[] {    
+export function getTeamWins(games: Game[]): TeamWins[] {
     const teamWins: { [teamName: string]: TeamWins } = teams.reduce((acc, team) => {
         acc[team.name] = { name: team.name, color: team.color, wins: 0 };
         return acc;
@@ -103,7 +99,7 @@ export function getTeamWins(games: Game[]): TeamWins[] {
 
     // Sum up the number of set wins for each team
     for (const game of games) {
-        const { team1Name, team2Name} = game;
+        const { team1Name, team2Name } = game;
         for (const set of game.sets) {
             if (set.team1Score !== 0 || set.team2Score !== 0) {
                 const winningTeam = set.team1Score > set.team2Score ? team1Name : team2Name;
@@ -111,7 +107,7 @@ export function getTeamWins(games: Game[]): TeamWins[] {
             }
         }
     }
-    
+
     return Object.values(teamWins);
 }
 
