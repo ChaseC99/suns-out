@@ -17,8 +17,11 @@ export type Game = {
     refs: string[];
 };
 
-export type TeamScore = {
+export type Team = {
     name: string;
-    score: number;
-    totalPoints: number;
+    color: string;
+};
+
+export type TeamWins = Team & {
+    wins: number;
 };

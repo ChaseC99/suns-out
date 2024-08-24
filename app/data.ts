@@ -1,10 +1,17 @@
 "use client"
-import { Game, TeamScore } from "./types";
+import { Game, Team, TeamWins } from "./types";
 
 const GAMES_CSV_URL = 'https://docs.google.com/spreadsheets/d/1j3zgWNeTYNF9nJmJJMgLkkleyXVegc8msODOZZKAYZ8/pub?gid=0&single=true&output=tsv';
 
 const players: string[] = [
     "Achinthya", "Alex C", "Anne", "Ash", "Christine", "Jerry", "Julia", "Albert", "Alex S", "Alexis", "Chase", "Colina", "Grace", "William", "Constance", "Edward", "Hoang", "Jackie", "Jeffrey", "Ray", "Tim", "Ben", "Eugene", "Frank", "Jacob", "Justine", "Solaine", "Soob"
+];
+
+const teams: Team[] = [
+    { name: "Can-A-Deez", color: "red" },
+    { name: "Blockanda", color: "black" },
+    { name: "JaBackPain", color: "white" },
+    { name: "Naurway", color: "blue" },
 ];
 
 async function loadTSVData(url: string, ignoreHeader: boolean = true) {
@@ -42,17 +49,17 @@ function mapGamesTSVToGames(csvData: string[]): Game[] {
 
     const games: { [id: number]: Game } = {};
     for (let i = 0; i < csvData.length; i += 1) {
-        const [id, round, time, court, format, notes, t1_name, t1_players, t1_score, t2_name, t2_players, t2_scores, referees] = csvData[i].split('\t');
+        const [id, round, time, court, format, notes, t1_name, t1_players, t1_score, t2_name, t2_players, t2_score, referees] = csvData[i].split('\t');
         
         const gameId = parseInt(id);
         const courtNumber = parseInt(court);
         const team1Players = t1_players.split(",");
         const team2Players = t2_players.split(",")
-        const refs = referees.split(",");
+        const refs = referees.split(",").filter((ref: string) => ref.trim() !== "");
         
         const gameSet = {
             team1Score: parseInt(t1_score),
-            team2Score: parseInt(t2_scores),
+            team2Score: parseInt(t2_score),
         };
 
         if (!games[gameId]) {
@@ -88,32 +95,30 @@ export async function getGamesFor(player: string) {
     return {games, lastUpdated};
 }
 
-export function getTeamScores(games: Game[]): [TeamScore, TeamScore] {    
-    // Get team names from the games
-    const team1Name = games[0].team1Name;
-    const team2Name = games[0].team2Name;
+export function getTeamWins(games: Game[]): TeamWins[] {    
+    const teamWins: { [teamName: string]: TeamWins } = teams.reduce((acc, team) => {
+        acc[team.name] = { name: team.name, color: team.color, wins: 0 };
+        return acc;
+    }, {} as { [teamName: string]: TeamWins });
 
-    // Get the total wins for each team
-    // Only count sets where a team won by 2 points and scored at least 15 points
-    const totalWins = games.reduce(([team1Wins, team2Wins], game) => {
-        const team1Won = game.sets.filter(({ team1Score, team2Score }) => team1Score > team2Score + 1 && team1Score >= 15).length;
-        const team2Won = game.sets.filter(({ team1Score, team2Score }) => team2Score > team1Score + 1 && team2Score >= 15).length;
-        return [team1Wins + team1Won, team2Wins + team2Won];
-    }, [0, 0]);
-
-    // Get the total points for each team
-    const totalPoints = games.reduce(([team1Points, team2Points], game) => {
-        const team1PointsWon = game.sets.reduce((total, { team1Score }) => total + team1Score, 0);
-        const team2PointsWon = game.sets.reduce((total, { team2Score }) => total + team2Score, 0);
-        return [team1Points + team1PointsWon, team2Points + team2PointsWon];
-    }, [0, 0]);
+    // Sum up the number of set wins for each team
+    for (const game of games) {
+        const { team1Name, team2Name} = game;
+        for (const set of game.sets) {
+            if (set.team1Score !== 0 || set.team2Score !== 0) {
+                const winningTeam = set.team1Score > set.team2Score ? team1Name : team2Name;
+                teamWins[winningTeam].wins += 1;
+            }
+        }
+    }
     
-    return [
-        {name: team1Name, score: totalWins[0], totalPoints: totalPoints[0]},
-        {name: team2Name, score: totalWins[1], totalPoints: totalPoints[1]},
-    ];
+    return Object.values(teamWins);
 }
 
 export function getPlayers(): string[] {
     return players.sort();
+}
+
+export function getTeams(): Team[] {
+    return teams;
 }

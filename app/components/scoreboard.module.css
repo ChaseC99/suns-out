@@ -1,11 +1,12 @@
 .scoreboardContainer {
   display: flex;
-  align-items: center;
+  align-items: end;
+  justify-content: space-evenly;
   width: 100vw;
   padding: 20px;
   box-sizing: border-box;
   overflow: scroll;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .teamsSection {

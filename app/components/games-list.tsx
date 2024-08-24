@@ -7,7 +7,7 @@ type GamesListProps = {
 
 export default function GamesList({games}: GamesListProps) {
     return (
-        <div style={{display: "flex", gap: 12, flexDirection: "column", margin: "16px 0"}}>
+        <div style={{display: "flex", gap: 12, flexDirection: "column", margin: "0"}}>
             {games.map((game: GameProp, i: number) => (
                 <Game key={i} {...game} />
             ))}

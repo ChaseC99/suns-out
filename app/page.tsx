@@ -1,17 +1,16 @@
 "use client"
 import Scoreboard from "./components/scoreboard";
 import Schedule from "./components/schedule";
-import { getGames, getTeamScores } from "./data";
+import { getGames, getTeams, getTeamWins } from "./data";
 import { useEffect, useState } from "react";
-import { Game, TeamScore } from "./types";
+import { Game, TeamWins } from "./types";
 
 export default function Home() {
   const [games, setGames] = useState<Game[]>(
     typeof window !== 'undefined' ? JSON.parse(localStorage.getItem("games") || "[]") as Game[] : []
   );
-  const [teamScores, setTeamScores] = useState<[TeamScore, TeamScore]>(
-    games.length > 0 ? getTeamScores(games) :
-    [{ name: "Team One", score: 0, totalPoints: 0 }, { name: "Blue Brawlled", score: 0, totalPoints: 0 }]
+  const [teamWins, setTeamWins] = useState<TeamWins[]>(
+    games.length > 0 ? getTeamWins(games) : getTeams().map(team => ({ ...team, wins: 0, place: 4 }))
   );
   const [lastUpdated, setLastUpdated] = useState("");
 
@@ -21,13 +20,13 @@ export default function Home() {
       localStorage.setItem("games", JSON.stringify(games));
       setGames(games);
       setLastUpdated(lastUpdated);
-      setTeamScores(getTeamScores(games));
+      setTeamWins(getTeamWins(games));
     });
   }, []);
 
   return (
     <div>
-      <Scoreboard teamScores={teamScores} loading={games.length == 0}/>
+      <Scoreboard teamWins={teamWins} loading={games.length == 0}/>
       <Schedule games={games} lastUpdated={lastUpdated} loading={games.length == 0}/>
     </div> 
   );
