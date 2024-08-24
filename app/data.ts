@@ -4,9 +4,8 @@ import { Game, TeamScore } from "./types";
 const GAMES_CSV_URL = 'https://docs.google.com/spreadsheets/d/1j3zgWNeTYNF9nJmJJMgLkkleyXVegc8msODOZZKAYZ8/pub?gid=0&single=true&output=tsv';
 
 const players: string[] = [
-    "Achinthya", "Alex", "Allison", "Ash", "Ben", "Cecilia", "Chase", "Colina", "Constance", "David", "Devin", "Edward", "Eugene", "Frank", "Garrick", "Grace", "Isabel", "Jackie", "Jeff", "Juan", "Justine", "Ray", "Susan", "Tara", "Tyler", "Will",
+    "Achinthya", "Alex C", "Anne", "Ash", "Christine", "Jerry", "Julia", "Albert", "Alex S", "Alexis", "Chase", "Colina", "Grace", "William", "Constance", "Edward", "Hoang", "Jackie", "Jeffrey", "Ray", "Tim", "Ben", "Eugene", "Frank", "Jacob", "Justine", "Solaine", "Soob"
 ];
-
 
 async function loadTSVData(url: string, ignoreHeader: boolean = true) {
     // Use fetch to get the CSV data
@@ -116,5 +115,5 @@ export function getTeamScores(games: Game[]): [TeamScore, TeamScore] {
 }
 
 export function getPlayers(): string[] {
-    return players;
+    return players.sort();
 }

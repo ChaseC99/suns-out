@@ -3,6 +3,7 @@ import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import LibraryMusicOutlinedIcon from '@mui/icons-material/LibraryMusicOutlined';
 import ScoreboardIcon from '@mui/icons-material/Scoreboard';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import Collapsible from '../components/collapsible';
 
 export default function Info() {
@@ -35,55 +36,86 @@ export default function Info() {
             </a>
 
             <Collapsible title="Teams" roundedTop roundedBottom>
-                <h3>Team One</h3>
-                <ul className={styles.threeColumnList}>
-                    <li>Alex</li>
-                    <li>Ash</li>
-                    <li>Cecilia</li>
-                    <li>Edward</li>
-                    <li>Eugene</li>
-                    <li>Frank</li>
-                    <li>Isabel</li>
-                    <li>Jeff</li>
-                    <li>Juan</li>
-                    <li>Justine</li>
-                    <li>Ray</li>
-                    <li>Susan</li>
-                    <li>Tara</li>
-                </ul>
-                <br />
-                <h3>Blue Brawlled</h3>
+                <h3>🔴 Can-A-Deez</h3>
                 <ul className={styles.threeColumnList}>
                     <li>Achinthya</li>
-                    <li>Allison</li>
-                    <li>Ben</li>
+                    <li>Alex C</li>
+                    <li>Anne</li>
+                    <li>Ash</li>
+                    <li>Christine</li>
+                    <li>Jerry</li>
+                    <li>Julia</li>
+                </ul>
+                <br />
+                <h3>⚫️ Blockanda</h3>
+                <ul className={styles.threeColumnList}>
+                    <li>Albert</li>
+                    <li>Alex S</li>
+                    <li>Alexis</li>
                     <li>Chase</li>
                     <li>Colina</li>
-                    <li>Constance</li>
-                    <li>David</li>
-                    <li>Devin</li>
-                    <li>Garrick</li>
                     <li>Grace</li>
+                    <li>William</li>
+                </ul>
+                <br />
+                <h3>⚪️ JaBackPain</h3>
+                <ul className={styles.threeColumnList}>
+                    <li>Constance</li>
+                    <li>Edward</li>
+                    <li>Hoang</li>
                     <li>Jackie</li>
-                    <li>Tyler</li>
-                    <li>Will</li>
+                    <li>Jeffrey</li>
+                    <li>Ray</li>
+                    <li>Tim</li>
+                </ul>
+                <br />
+                <h3>🔵 Naurway</h3>
+                <ul className={styles.threeColumnList}>
+                    <li>Ben</li>
+                    <li>Eugene</li>
+                    <li>Frank</li>
+                    <li>Jacob</li>
+                    <li>Justine</li>
+                    <li>Solaine</li>
+                    <li>Soob</li>
                 </ul>
             </Collapsible>
 
             <div className={styles.infoBody}>
                 <Collapsible title="Gameplay" roundedTop>
                     <div>
-                        <p>Everyone will be split up into 2 big squads (13 per squad).</p>
+                        <div>
+                            <p><strong>2 Warmup Games</strong></p>
+                            <ul>
+                                <li>Everyone plays in 6v6 format (there will be 1 sub at a time, rotating in every time your team rotates servers).</li>
+                                <li>The opportunity to build chemistry and discover your position and format preferences!</li>
+                                <li>Based on the warmup results and team’s preferences, the teams will be seeded as team A, B, C, or D for the 3 competition rounds. </li>
+                            </ul>
+                        </div>
                         <br />
-                        <p>It will be a mixed-format, where there will be 4v4 games, 3v3 games, and 2v2 games.</p>
+                        <div>
+                            <p><strong>15m Break: Team Lineups Selection</strong></p>
+                            <ul>
+                                <li>This will be when each team will choose who will play in each game. </li>
+                                <li>The Home team in each round will choose first, and the Away team will get to respond accordingly. </li>
+                                <li>No gender requirements in any of the games. </li>
+                            </ul>
+                        </div>
                         <br />
-                        <p>Everyone will end up playing 4 games.</p>
+                        <div>
+                            <p><strong>3 Competition Rounds</strong></p>
+                            <ul>
+                                <li>Each round consists of 2 separate games. </li>
+                                <li>Each player will play in exactly 1 game (2 sets) per competition round. </li>
+                                <li>By the end of the day, everyone will play 2 warmups and 3 competition games. </li>
+                            </ul>
+                    </div>
                     </div>
                 </Collapsible>
 
                 <Collapsible title="Court Setup">
                     <ul>
-                        <li>4v4: full court size</li>
+                        <li>4v4 and 5v5: full court size</li>
                         <li>{"3v3 and 2v2: small 'doubles' court size"}</li>
                     </ul>
                 </Collapsible>
@@ -119,12 +151,22 @@ export default function Info() {
                     </div>
                 </Collapsible>
 
-                <Collapsible title="Game Scoring" roundedBottom>
+                <Collapsible title="Game Scoring">
                     <ul>
-                        <li>Each game will be 2 sets (no 3rd set even if each team wins 1 set).</li>
-                        <li>Each set will play to 21 points (must win by 2, no hard cap).</li>
-                        <li>The squad with most sets won at the end will be the winner of the tournament!</li>
+                        <li>Each warmup game will be just 1 set to 25 points (must win by 2, no hard cap). </li>
+                        <li>Each competition game will be 2 sets to 21 points (must win by 2, no hard cap). </li>
+                        <li>The team with most sets won at the end will be the winner of the tournament!</li>
                         <li>There will also be some individual recognition.</li>
+                    </ul>
+                </Collapsible>
+
+                <Collapsible title="Common Volleyball Rules" roundedBottom>
+                    <ul>
+                        <li>NO open hand serves receive.</li>
+                        <li>NO open hand receives on free ball OR during rallies.</li>
+                        <li>OK to open hand receive for hard driven.</li>
+                        <li>OK to set over the net with 2 hands (as long as shoulders square with direction) otherwise NO.</li>
+                        <li>OK to cross other side of the net during the play as long as not interrupting the game.</li>
                     </ul>
                 </Collapsible>
             </div>
@@ -167,10 +209,20 @@ export default function Info() {
                 </a>
                 <a
                     className={styles.linkContainer}
+                    style={{ justifyContent: 'space-between', marginBottom: '12px'}}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href='https://forms.gle/VCMnsypTr3wWXjL58'
+                >
+                    <p>Superlatives Voting</p>
+                    <EmojiEventsIcon />
+                </a>
+                <a
+                    className={styles.linkContainer}
                     style={{ justifyContent: 'space-between' }}
                     target="_blank"
                     rel="noopener noreferrer"
-                    href='https://docs.google.com/spreadsheets/d/1KXHZcpKK28a0Z0-hCPKLJahMTrDDgxWVwWySM5OY1J0/edit?usp=sharing'
+                    href='https://docs.google.com/spreadsheets/d/1j3zgWNeTYNF9nJmJJMgLkkleyXVegc8msODOZZKAYZ8/edit?usp=sharing'
                 >
                     <p>Google Sheets Schedule</p>
                     <OpenInNewIcon />
