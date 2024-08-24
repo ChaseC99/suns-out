@@ -35,7 +35,7 @@ export default function Scoreboard({ teamWins, heighMultiplier }: PodiumProps) {
                 style={{height: 50 * heighMultiplier}}
             >
                 <span>
-                    {wins} 
+                    <strong>{wins}</strong>
                 </span>
                 <span>
                     win{wins === 1 ? "" : "s"}

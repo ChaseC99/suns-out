@@ -8,14 +8,14 @@ export default function Game({ team1Name, team2Name, team1Players, team2Players,
     return (
         <div className={styles.game}>
             <div className={styles.gameHeader}>
-                <span>Court {court}</span>
-                <span>{format}</span>
-                <span>{time?.toLowerCase()}</span>
+                <span style={{textAlign: "start"}}>Court {court}</span>
+                <span style={{textAlign: "center"}}>{format}</span>
+                <span style={{textAlign: "end"}}>{time?.toLowerCase()}</span>
             </div>
 
             <div className={styles.teamNames}>
-                <span>{team1Name}</span>
-                <span>{team2Name}</span>
+                <span><strong>{team1Name}</strong></span>
+                <span><strong>{team2Name}</strong></span>
             </div>
 
             <div className={styles.playersContainer}>
