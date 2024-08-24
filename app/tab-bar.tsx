@@ -21,6 +21,7 @@ export default function TabBar() {
                 value={path}
                 onChange={handleChange}
                 sx={{
+                    height: 80,
                     bgcolor: "#8d6f5a",
                     "& .Mui-selected, .Mui-selected > svg": {
                         color: "#f7dd52"
