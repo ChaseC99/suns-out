@@ -9,14 +9,14 @@ export default function Info() {
     return (
         <div className={styles.infoPage}>
             <div className={styles.header}>
-                <h1>Volleybrawl</h1>
+                <h1>Sun's Out<br />Balls Out</h1>
                 <div className={styles.datetime}>
-                    <img src="/volleybrawl.png" alt="Volleybrawl logo" className={styles.headerLogo} />
+                    <img src="/logo.png" alt="Volleybrawl logo" className={styles.headerLogo} />
                     <div>
                         <p>9am - 4pm</p>
-                        <p>Saturday, June 29</p>
+                        <p>Saturday, August 24</p>
                     </div>
-                    <img src="/volleybrawl.png" alt="Volleybrawl logo" className={styles.headerLogo} />
+                    <img src="/logo.png" alt="Volleybrawl logo" className={styles.headerLogo} />
                 </div>
 
             </div>
